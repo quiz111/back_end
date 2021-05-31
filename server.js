@@ -21,7 +21,8 @@ app.use(morgan("dev")); // application에서 발생하는 모든 일들을 loggi
 mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
     useFindAndModify: false,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex:true
 }).then(() => {
     console.log("몽고디비 아틀라스 연결 성공");
 }).catch((e) => {
@@ -32,7 +33,7 @@ app.use(expressSession({
     secret: "@XDF@#$#R!@!@!@##!@", 
     resave: false, 
     saveUninitialized: true,
-    cookie:{maxAge:(3.6e+6)*24} // 24시간 뒤 만료(자동 삭제)
+    cookie:{maxAge:(3.6e+6)*24}, // 24시간 뒤 만료(자동 삭제),
 }));
 
 app.use("/user", userRouter);
