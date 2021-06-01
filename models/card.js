@@ -2,6 +2,10 @@ const { text } = require("body-parser");
 const mongoose = require("mongoose");
 
 const cardSchema = mongoose.Schema({
+    id: {
+        type: Number,
+        require: true
+    },
     title: {
         type: String,
         maxlength: 30,
