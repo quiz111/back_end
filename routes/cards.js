@@ -25,7 +25,7 @@ app.post("/create-card", (req, res) => {
 
 //-------------------------- 조회- Read-----------------------
 //세션에 있는 이메일로 카드 가져오기
-app.post("/read-card-email", (req,res) => {
+app.get("/read-card-email", (req,res) => {
     Card.find({creater: req.session.email}, (err, user) => {
         if (err) {
             return res.json({
@@ -40,7 +40,7 @@ app.post("/read-card-email", (req,res) => {
 })
 
 //키워드로 카드 가져오기 API
-app.post("/read-card-keyword", (req,res) => {
+app.get("/read-card-keyword/:keyword", (req,res) => {
     Card.find({"$text": {"$search": req.body.title}}, (err, card) => {
         if(err) {
             console.log(err);
@@ -56,7 +56,7 @@ app.post("/read-card-keyword", (req,res) => {
 })
 //-------------------------- 변경- Update-----------------------
 //id값을 이용해 카드 변경
-app.post("/update-card", (req, res) => {
+app.get("/update-card/:id", (req, res) => {
     Card.findOneAndUpdate({id: req.body.id},{
         title: req.body.title,
         description: req.body.description,
