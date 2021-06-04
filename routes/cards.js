@@ -56,7 +56,7 @@ app.get("/read-card-keyword/:keyword", (req,res) => {
 })
 //-------------------------- 변경- Update-----------------------
 //id값을 이용해 카드 변경
-app.get("/update-card/:id", (req, res) => {
+app.post("/update-card/", (req, res) => {
     Card.findOneAndUpdate({id: req.body.id},{
         title: req.body.title,
         description: req.body.description,
